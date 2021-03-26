@@ -31,9 +31,11 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public'), 
     port: 3000,
-    publicPath: 'http://localhost:3000/dist',
+    publicPath: 'http://localhost:3000/dist', // 可以直接写/dist
     hotOnly: true,
-    compress: true
+    compress: true,
+    open: true   
+    // host: '127.0.0.1' // 修改dev server的host
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()

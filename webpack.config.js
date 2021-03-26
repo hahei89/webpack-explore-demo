@@ -2,6 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 // 清理构建文件的插件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// 自动生成HTML文件
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -31,7 +33,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'), 
+    contentBase: path.join(__dirname, 'dist'), 
     port: 3000,
     publicPath: 'http://localhost:3000/dist', // 可以直接写/dist
     hotOnly: true,
@@ -47,12 +49,15 @@ module.exports = {
           '^/api': ''
         }
       } */
-
     }
     // host: '127.0.0.1' // 修改dev server的host
   },
   plugins: [
     new CleanWebpackPlugin(), // 清理打包文件
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'webpack for react',
+      template: 'public/index.html'
+    })
   ]
 }

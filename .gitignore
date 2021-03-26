@@ -1,4 +1,5 @@
 .vscode
 *.lock
+*-error.log
 dist
 node_modules

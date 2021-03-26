@@ -34,7 +34,19 @@ module.exports = {
     publicPath: 'http://localhost:3000/dist', // 可以直接写/dist
     hotOnly: true,
     compress: true,
-    open: true   
+    open: true,
+    writeToDisk: true,
+    // useLocalIp: true, // 浏览器报错
+    proxy: {
+      'api': 'http://localhost:3000'
+      /* 'api': {
+        target: 'http://localhost:3000',
+        pathRewrite: {
+          '^/api': ''
+        }
+      } */
+
+    }
     // host: '127.0.0.1' // 修改dev server的host
   },
   plugins: [

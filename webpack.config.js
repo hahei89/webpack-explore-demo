@@ -11,7 +11,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          preset: ['@babel/env']
+          presets: ['@babel/env']
         }
       },
       {
@@ -21,7 +21,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', 'js', 'jsx']
+    extensions: ['*', '.js', '.jsx']
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),

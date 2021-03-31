@@ -46,7 +46,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'), 
     port: 3000,
-    publicPath: 'http://localhost:3000/dist', // 可以直接写/dist
+    publicPath: 'http://localhost:3000/dist/', // 可以直接写/dist
     hotOnly: true,
     compress: true,
     open: true,

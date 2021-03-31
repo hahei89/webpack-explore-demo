@@ -1,7 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 // 清理构建文件的插件
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const DelWebpackPlugin = require('del-webpack-plugin')
+
 // 自动生成HTML文件
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -64,8 +65,10 @@ module.exports = {
     // host: '127.0.0.1' // 修改dev server的host
   },
   plugins: [
-    new CleanWebpackPlugin(), // 清理打包文件
     new webpack.HotModuleReplacementPlugin(),
+    new DelWebpackPlugin({
+      exclude: ['index.html'],
+    }),
     new HtmlWebpackPlugin({
       title: 'webpack for react',
       template: 'public/index.html'

@@ -19,6 +19,7 @@ if (mode !== 'production') {
 module.exports = {
   entry: { bundle: './src/index.js' },
   mode,
+  devtool: mode === 'development' ? 'eval-source-map' : 'none',
   module: {
     rules: [
       {

@@ -7,9 +7,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 分离CSS文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+// 设置运行环境
+const mode = process.env.NODE_ENV
+const plugins = []
+if (mode !== 'production') {
+  // 设置热更新插件只在开发模式下启用,HMR决不能用在生产环境中
+  const hotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin()
+  plugins.push(hotModuleReplacementPlugin)
+}
+
 module.exports = {
   entry: { bundle: './src/index.js' },
-  mode: 'development',
+  mode,
   module: {
     rules: [
       {
@@ -69,7 +78,7 @@ module.exports = {
     // host: '127.0.0.1' // 修改dev server的host
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    ...plugins,
     new CleanWebpackPlugin({
       /* 使得每次webpack-dev-server打包之后，index.html文件仍然保留 */
       cleanStaleWebpackAssets: false
@@ -82,7 +91,7 @@ module.exports = {
       // Options similar to the same options in webpackOptions.output
       // both options are optional
       filename: 'css/[name].css',
-      chunkFilename: 'css/[id].css',
-    }),
+      chunkFilename: 'css/[id].css'
+    })
   ]
 }

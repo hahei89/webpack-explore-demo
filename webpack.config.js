@@ -1,13 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
 // 清理构建文件的插件
-const DelWebpackPlugin = require('del-webpack-plugin')
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 // 自动生成HTML文件
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: { bundle: './src/index.js' },
   mode: 'development',
   module: {
     rules: [
@@ -29,7 +28,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 8192,
+              limit: 8192
             }
           }
         ]
@@ -42,10 +41,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/dist/',
-    filename: 'bundle.js'
+    filename: 'js/[name].js'
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'), 
+    contentBase: path.join(__dirname, 'dist'),
     port: 3000,
     publicPath: 'http://localhost:3000/dist/', // 可以直接写/dist
     hotOnly: true,
@@ -54,7 +53,7 @@ module.exports = {
     writeToDisk: true,
     // useLocalIp: true, // 浏览器报错
     proxy: {
-      'api': 'http://localhost:3000'
+      api: 'http://localhost:3000'
       /* 'api': {
         target: 'http://localhost:3000',
         pathRewrite: {
@@ -66,8 +65,9 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new DelWebpackPlugin({
-      exclude: ['index.html'],
+    new CleanWebpackPlugin({
+      /* 使得每次webpack-dev-server打包之后，index.html文件仍然保留 */
+      cleanStaleWebpackAssets: false
     }),
     new HtmlWebpackPlugin({
       title: 'webpack for react',

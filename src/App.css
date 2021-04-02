@@ -1,6 +1,6 @@
 .render {
   width: 600px;
-  height: 600px;
+  height: 300px;
   margin: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   background-image: url('../public/logo.jpeg');

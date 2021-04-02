@@ -4,6 +4,8 @@ const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 // 自动生成HTML文件
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// 分离CSS文件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: { bundle: './src/index.js' },
@@ -20,7 +22,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(png|jpeg|gif)$/i,
@@ -75,6 +77,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'webpack for react',
       template: 'public/index.html'
-    })
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
   ]
 }

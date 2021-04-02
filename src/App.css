@@ -1,8 +1,10 @@
 .render {
   width: 600px;
   height: 600px;
-  background-color: red;
   margin: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   background-image: url('../public/logo.jpeg');
+  background-color: red;
+  background-size: 80px;
+  background-repeat: no-repeat;
 }

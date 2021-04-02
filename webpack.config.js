@@ -41,7 +41,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/dist/',
-    filename: 'js/[name].js'
+    filename: 'js/[name].js',
+    /* 避免HotModuleReplacementPlugin每次都生成不同的描述文件json和补丁文件js */
+    hotUpdateChunkFilename: 'hot/hot-update.js',
+    hotUpdateMainFilename: 'hot/hot-update.json'
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

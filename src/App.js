@@ -4,6 +4,7 @@ import './App.css'
 
 class App extends Component {
   render () {
+    const m = this.props?.h
     return (
       <div className='render'>
         <h1>Hello, world! this is here</h1>
